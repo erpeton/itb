@@ -1,0 +1,37 @@
+{% extends "battles/base.html" %}
+
+{% block content %}
+    <div class="main">
+    <strong>Welcome! </strong><br /><br />
+    Icy Tower Battle is a place where you can play with players from around the world. You can battle in any of the following categories: Combo, Floor, NML, CC1, CC2, CC3, CC4, CC5, JS1, JS2, JS3, JS4 or JS5, in all possible settings of floor size, speed and gravity! When you upload a replay, the script will check whether the game was slowed down and whether the password for the battle is correct. But first...<br /><br />
+    <strong>Get a rank! </strong><br /><br />
+    After creating a new account and logging in, send us replays with your records in Combo, Floor and NML. This will allow us to assign you a rank depending on your skill. For each category, you can get up to 10 points, which makes 30 points in total. Ranks are assigned for meeting appropriate score ranges (Combo 1327, Floor 2112 and NML 1555 are world records - when someone beats them, the ranges will change accordingly).<br /><br />
+
+    <img src="/static/color/green.png" alt="" /> (1200) (points: 1-3) (level: Good!) <br />
+    <img src="/static/color/green.png" alt="" /> (1300) (points: 4-6) (level: Sweet!) <br />
+    <img src="/static/color/green.png" alt="" /> (1400) (points: 7-9) (level: Great!) <br />
+    <img src="/static/color/yellow.png" alt="" /> (1500) (points: 10-12) (level: Super!) <br />
+    <img src="/static/color/yellow.png" alt="" /> (1600) (points: 13-15) (level: Wow!) <br />
+    <img src="/static/color/yellow.png" alt="" /> (1700) (points: 16-18) (level: Amazing!) <br />
+    <img src="/static/color/orange.png" alt="" /> (1800) (points: 19-21) (level: Extreme!) <br />
+    <img src="/static/color/orange.png" alt="" /> (1900) (points: 22-24) (level: Fantastic!) <br />
+    <img src="/static/color/orange.png" alt="" /> (2000) (points: 25-27) (level: Splendid!) <br />
+    <img src="/static/color/red.png" alt="" /> (2100) (points: 28-30) (level: No Way!) <br /><br /> 
+ 
+    <strong>Info! </strong><br /><br />
+    - you can participate in at most three battles at the same time <br />
+    - the minimum duration of a battle is one hour, the maximum - 48 hours <br />
+    - when you create a new battle, you can specify the floor size, speed and gravity, the category (Combo, Floor, NML, CC1-CC5, JS1-JS5) and the rank threshold (for example, if you set the threshold to "over 1500", players ranked below 1500 will be unable to join the battle) <br />
+    - created battles are visible in the "Join battle" section (the "waiting room"), where other logged in users can sign up <br />
+    - when the second player joins, the creator can accept (the "Accept" section) or reject (the "Reject" section) his request. The second player (the joining one) can sign out at any time (the "Cancel" section), but he can only cancel the match if the battle is still in the waiting room <br />
+    - if the first player accepts the request, the battle becomes official and is now visible in the "Show battles" section <br />
+    - the moment the battle begins, the players receive a six-character password in the "Show battles" section, which they\'ll have to put in the "comment" field of the replay. There will also be a link to the current state of the battle (the results, and when and by whom have the replays yet been sent) <br />
+    - when the round is over, the battle is moved to the archive (the "Archive" section) and the participants\' new ranks are being calculated. There are four possibilities: a win, a loss, a draw and a quitting. A 0-0 score is not a draw, but a quitting. A quitting (= not sending a replay) means -40 points penalty for the quitting player. In the case of a draw, the player with a lower rank gains points and the one with a higher rank loses them. <br /><br />
+
+    <strong>Contact with us! </strong><br /><br />
+
+    If you have any questions, ideas or suggestions, please do not hesitate to contact us!<br /><br />
+    Support e-mail: <strong>foo</strong>
+ 
+	</div>
+{% endblock %}

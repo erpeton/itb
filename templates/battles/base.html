@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<meta name="description" content="icy tower battle"/>
+<meta name="keywords" content="icy tower ice towr centre replay replays upload slowdown detector highscores list combo score floor nml primary categories download secondary categories tournaments signup"/> 
+<meta name="author" content="Jacob"/> 
+<link rel="stylesheet" type="text/css" href="/static/css/style.css" media="screen"/>
+<title>Icy Tower Battle v0.2</title>
+</head>
+
+<body>
+
+<div class="container">
+	
+    <div class="header">
+    <br /><br />
+    <strong>Welcome in Icy Tower Battle!</strong><br /><br />
+    <p><strong>{% now "D d F Y H:m" %}</strong> </p>
+    <p>{ <a href="{% url battles:index %}" >Home</a> } { <a href="{% url battles:ranking %}">Ranking</a> } { <a href="{% url battles:level %}">Level</a> } { <a href="{% url battles:search %}">Search</a> } <br /><br />{ <a href="{% url battles:join_list %}">Join battle</a> } { <a href="{% url battles:show_list %}">Show battles</a> } { <a href="{% url battles:archive_list %}">Archive</a> } <br /><br />
+    {% if user.is_authenticated %}
+        { <a href="{% url battles:new_battle %}">New battle</a> } { <a href="{% url battles:manage %}">Manage battles</a> } <br /><br />{ <a href="{% url battles:upload %}">Upload replay</a> } { <a href="{% url battles:profil user.id %}">{{ user }}</a> } { <a href="{% url battles:logout %}">Logout</a> }
+    {% else %}
+        { <a href="{% url battles:login %}">Login</a> } { <a href="{% url battles:register %}">Register</a> }
+    {% endif %}
+    </p>
+    </div>
+    {% block content %}{% endblock %}
+    {% block footer %}
+    <div class="footer">
+    <p><strong>&copy; 2011-2012 Icy Tower Battle v0.2 by Jacob</strong> <br />
+    Valid <a href="http://validator.w3.org/check?uri=referer">XHTML</a> &amp; <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a></p>
+    </div>
+    {% endblock %}
+    
+</div>
+</body>
+</html>

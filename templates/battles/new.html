@@ -1,0 +1,27 @@
+{% extends "battles/base.html" %}
+
+{% block content %}
+
+{% if had_rank == 0 %}
+    <div class="main"><p style="color: red;">Your rank must be highet than 0, if you want create a battle! Upload your records and you get rank!</p></div>
+{% elif had_free_slots == 0 %}
+    <div class="main"><p style="color: red;">You can play in three battles max!</p></div>
+{% else %}
+<div class="wrapper3">
+{% if form.errors %}
+    <p style="color: red;">
+    Please correct the error{{ form.errors|pluralize }} below.
+    </p>
+{% endif %}
+    <form action="" method="post">
+    {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <br />
+        <input class="foo" type="submit" value="Create battle!">
+    </form>
+</div>
+{% endif %}
+
+{% endblock %}

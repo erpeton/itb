@@ -1,0 +1,21 @@
+{% extends "battles/base.html" %}
+
+{% block content %}
+
+<div class="main">
+
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'success' %}
+            <p style="color: green;">{{ message }}</p>
+        {% else %}
+            <p style="color: red;">{{ message }}</p>
+        {% endif %}
+{% endfor %}
+{% else %}
+    Nothing to do!
+{% endif %}
+
+</div>
+
+{% endblock %}

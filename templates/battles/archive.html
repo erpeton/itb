@@ -1,0 +1,65 @@
+{% extends "battles/base.html" %}
+
+{% block content %}
+<div class="main">
+<strong>Battle: &nbsp; 
+    {% if room.elo1 < 1200 %}
+        <img src="/static/color/blue.png" alt="" /> 
+    {% elif room.elo1 >= 1200 and room.elo1 < 1500 %}
+        <img src="/static/color/green.png" alt="" />
+    {% elif room.elo1 >= 1500 and room.elo1 < 1800 %}
+        <img src="/static/color/yellow.png" alt="" />
+    {% elif room.elo1 >= 1800 and room.elo1 < 2100 %}
+        <img src="/static/color/orange.png" alt="" />
+    {% elif room.elo1 >= 2100 %}
+        <img src="/static/color/red.png" alt="" />
+    {% endif %}
+    {{ room.player1 }} ({{ room.elo1 }}) vs 
+    {% if room.elo2 < 1200 %}
+        <img src="/static/color/blue.png" alt="" /> 
+    {% elif room.elo2 >= 1200 and room.elo2 < 1500 %}
+        <img src="/static/color/green.png" alt="" />
+    {% elif room.elo2 >= 1500 and room.elo2 < 1800 %}
+        <img src="/static/color/yellow.png" alt="" />
+    {% elif room.elo2 >= 1800 and room.elo2 < 2100 %}
+        <img src="/static/color/orange.png" alt="" />
+    {% elif room.elo2 >= 2100 %}
+        <img src="/static/color/red.png" alt="" />
+    {% endif %}
+    {{ room.player2 }} ({{ room.elo2 }}) &nbsp;&nbsp; [
+    {% if room.floorsize == 'Normal' and room.speed == 'Normal' and room.gravity == 'Normal' %}
+        Normal {{ room.category }} 
+    {% else %}
+        {% if 'Normal' not in room.floorsize %}
+            {{ room.floorsize }}
+        {% endif %}
+        {% if 'Normal' not in room.speed %}
+            {{ room.speed }}
+        {% endif %}
+        {% if 'Normal' not in room.gravity %}
+            {{ room.gravity }}
+        {% endif %}
+        {{ room.category }}
+    {% endif %}
+    ]</strong><br /><br />
+    
+    {% if room.history != '' %}
+        {% for history in html %}
+            {{ history }} <br />
+        {% endfor %}
+        
+         {% if room.result1 == 0 %}
+            <br />Replays: | {{ room.player1 }} | <a href="/media/replays/{{ room.player2 }}_battle{{ room.tmp_battle_id }}.itr">{{ room.player2 }}</a> |
+         {% elif room.result2 == 0 %}
+            <br />Replays: | <a href="/media/replays/{{ room.player1 }}_battle{{ room.tmp_battle_id }}.itr">{{ room.player1 }}</a> | {{ room.player2 }} |
+         {% else %}
+            <br />Replays: | <a href="/media/replays/{{ room.player1 }}_battle{{ room.tmp_battle_id }}.itr">{{ room.player1 }}</a> | <a href="/media/replays/{{ room.player2 }}_battle{{ room.tmp_battle_id }}.itr">{{ room.player2 }}</a> |     
+         {% endif %}
+
+    {% else %}
+        <strong>Neither player had sent any replays... </strong>
+    {% endif %}
+
+</div>
+
+{% endblock %}

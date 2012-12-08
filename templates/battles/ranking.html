@@ -1,0 +1,69 @@
+{% extends "battles/base.html" %}
+
+{% block content %}
+{% if ranking %}
+
+    <div class="wrapper2">
+        <table>
+        <tr>
+        <td><strong>Position</strong></td>
+        <td><strong>Player</strong></td>
+        <td><strong>Ranking</strong></td>
+        <td><strong>Match</strong></td>
+        <td><strong>Win</strong></td>
+        <td><strong>Loss</strong></td>
+        <td><strong>Draw</strong></td>
+        <td><strong>Escape</strong></td>
+        </tr>
+        {% for player_rank in ranking %}
+        <tr>
+        <td>{{ page_obj.start_index|add:forloop.counter0 }}</td>
+        <td><div class="left">
+        {% if player_rank.rank < 1200 %}
+            <img src="/static/color/blue.png" alt="" /> 
+        {% elif player_rank.rank >= 1200 and player_rank.rank < 1500 %}
+            <img src="/static/color/green.png" alt="" />
+        {% elif player_rank.rank >= 1500 and player_rank.rank < 1800 %}
+            <img src="/static/color/yellow.png" alt="" />
+        {% elif player_rank.rank >= 1800 and player_rank.rank < 2100 %}
+            <img src="/static/color/orange.png" alt="" />
+        {% elif player_rank.rank >= 2100 %}
+            <img src="/static/color/red.png" alt="" />
+        {% endif %}
+        <a href="{% url battles:profil player_rank.player.id %}">{{ player_rank.player }}</a>
+        </div></td>
+        <td>{{ player_rank.rank }}</td>
+        <td>{{ player_rank.matches }}</td>
+        <td>{{ player_rank.win }}</td>
+        <td>{{ player_rank.lose }}</td>
+        <td>{{ player_rank.draw }}</td>
+        <td>{{ player_rank.escape }}</td>
+        {% endfor %}
+        </tr>
+        </table>
+    </div>
+    
+    {% if is_paginated %}
+        <div class="pagination2">
+        <br />
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <a href="{% url battles:ranking %}?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+                <span class="page-current">
+                    Page {{ page_obj.number }} of {{ paginator.num_pages }}
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="{% url battles:ranking %}?page={{ page_obj.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+        </div> 
+    {% endif %}
+
+{% else %}
+<div class="main">
+    <strong>No players yet</strong><br />
+</div>
+{% endif %}
+
+{% endblock %}

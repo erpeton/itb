@@ -1,0 +1,15 @@
+{% extends "battles/base.html" %}
+
+{% block content %}
+
+<div class="main">
+{% if messages %}
+    {% for message in messages %}
+        <p style="color: red;">Status: FALSE! <br /><br />{{ message }}</p>
+    {% endfor %}
+{% else %}
+    <p style="color: green;">Status: OK! <br /><br />Your request to <a href="{% url battles:profil room.player1.id%}">{{ room.player1 }}</a> was canceled.</p>
+{% endif %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "battles/base.html" %}
+
+{% block content %}
+
+    <div class="main">
+    
+    {% if player %}
+        <a href="{% url battles:profil player.id %}">See profil of {{ player.username }}</a> 
+    {% else %}
+        <strong>User not found!</strong>
+    {% endif %}
+    
+    </div>
+
+{% endblock %}

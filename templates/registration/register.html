@@ -1,0 +1,15 @@
+{% extends "battles/base.html" %}
+
+{% block content %}
+
+<div class="main">
+ <strong>Create an account</strong><br /><br />
+
+  <form action="" method="post">
+  {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" value="Create the account">
+  </form>
+  
+</div>
+{% endblock %}

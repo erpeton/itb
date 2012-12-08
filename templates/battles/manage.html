@@ -1,0 +1,112 @@
+{% extends "battles/base.html" %}
+
+{% block content %}
+
+{% if manage_battles %}
+<div class="wrapper3">
+<table>
+    <tr>
+    <td><strong>Battle</strong></td>
+    <td><strong>Player 1</strong></td>
+    <td><strong>Player 2</strong></td>
+    <td><strong>Action</strong></td>
+    </tr>
+    {% for battle in manage_battles %}
+    <tr>
+        {% if battle.player1 != battle.player2 and battle.player1 == user %}
+        <td>{{ battle.id}}</td>
+        <td>
+        {% if battle.elo1 < 1200 %}
+            <img src="/static/color/blue.png" alt="" /> 
+        {% elif battle.elo1 >= 1200 and battle.elo1 < 1500 %}
+            <img src="/static/color/green.png" alt="" />
+        {% elif battle.elo1 >= 1500 and battle.elo1 < 1800 %}
+            <img src="/static/color/yellow.png" alt="" />
+        {% elif battle.elo1 >= 1800 and battle.elo1 < 2100 %}
+            <img src="/static/color/orange.png" alt="" />
+        {% elif battle.elo1 >= 2100 %}
+            <img src="/static/color/red.png" alt="" />
+        {% endif %}
+        {{ battle.player1 }}<br /><div class="klein2">({{ battle.elo1 }})</div>
+        </td>
+        <td> 
+        {% if battle.elo2 < 1200 %}
+            <img src="/static/color/blue.png" alt="" /> 
+        {% elif battle.elo2 >= 1200 and battle.elo2 < 1500 %}
+            <img src="/static/color/green.png" alt="" />
+        {% elif battle.elo2 >= 1500 and battle.elo2 < 1800 %}
+            <img src="/static/color/yellow.png" alt="" />
+        {% elif battle.elo2 >= 1800 and battle.elo2 < 2100 %}
+            <img src="/static/color/orange.png" alt="" />
+        {% elif battle.elo2 >= 2100 %}
+            <img src="/static/color/red.png" alt="" />
+        {% endif %}
+        {{ battle.player2 }}<br /><div class="klein2">({{ battle.elo2 }})</div>
+        </td>
+        <td><a href="{% url battles:accept battle.id %}">Accept</a> | <a href="{% url battles:reject battle.id %}">Reject</a></td>
+        {% endif %}
+        
+        {% if battle.player1 != battle.player2 and battle.player2 == user %}
+        <td>{{ battle.id }}</td>
+        <td>
+        {% if battle.elo1 < 1200 %}
+            <img src="/static/color/blue.png" alt="" /> 
+        {% elif battle.elo1 >= 1200 and battle.elo1 < 1500 %}
+            <img src="/static/color/green.png" alt="" />
+        {% elif battle.elo1 >= 1500 and battle.elo1 < 1800 %}
+            <img src="/static/color/yellow.png" alt="" />
+        {% elif battle.elo1 >= 1800 and battle.elo1 < 2100 %}
+            <img src="/static/color/orange.png" alt="" />
+        {% elif battle.elo1 >= 2100 %}
+            <img src="/static/color/red.png" alt="" />
+        {% endif %}
+        {{ battle.player1 }}<br /><div class="klein2">({{ battle.elo1 }})</div>
+        </td> 
+        <td>
+        {% if battle.elo2 < 1200 %}
+            <img src="/static/color/blue.png" alt="" /> 
+        {% elif battle.elo2 >= 1200 and battle.elo2 < 1500 %}
+            <img src="/static/color/green.png" alt="" />
+        {% elif battle.elo2 >= 1500 and battle.elo2 < 1800 %}
+            <img src="/static/color/yellow.png" alt="" />
+        {% elif battle.elo2 >= 1800 and battle.elo2 < 2100 %}
+            <img src="/static/color/orange.png" alt="" />
+        {% elif battle.elo2 >= 2100 %}
+            <img src="/static/color/red.png" alt="" />
+        {% endif %}
+        {{ battle.player2 }}<br /><div class="klein2">({{ battle.elo2 }})</div>
+        </td>
+        <td><a href="{% url battles:cancel battle.id %}">Cancel</a></td>
+        {% endif %}
+        
+        {% if battle.player1 == battle.player2 and battle.accept == 0 %}
+        <td>{{ battle.id }}</td>
+        <td>
+        {% if battle.elo1 < 1200 %}
+            <img src="/static/color/blue.png" alt="" /> 
+        {% elif battle.elo1 >= 1200 and battle.elo1 < 1500 %}
+            <img src="/static/color/green.png" alt="" />
+        {% elif battle.elo1 >= 1500 and battle.elo1 < 1800 %}
+            <img src="/static/color/yellow.png" alt="" />
+        {% elif battle.elo1 >= 1800 and battle.elo1 < 2100 %}
+            <img src="/static/color/orange.png" alt="" />
+        {% elif battle.elo1 >= 2100 %}
+            <img src="/static/color/red.png" alt="" />
+        {% endif %}
+        {{ battle.player1 }}<br /><div class="klein2">({{ battle.elo1 }})</div>
+        </td> 
+        <td>(empty)</td>
+        <td><a href="{% url battles:delete battle.id %}">Delete</a></td>
+        {% endif %}
+    </tr>  
+    {% endfor %}
+</table>
+</div>
+{% endif %}
+
+
+{% if not manage_battles %}
+    <div class="main">No battles to manage</div>
+{% endif %}
+
+{% endblock %}

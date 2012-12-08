@@ -1,0 +1,43 @@
+{% extends "battles/base.html" %}
+
+{% block content %}
+
+<div class="main">
+
+<strong>Rank</strong><br /><br />
+
+<img src="/static/color/green.png" alt="" /> (1200) (points: 1-3) (level: Good!) <br />
+<img src="/static/color/green.png" alt="" /> (1300) (points: 4-6) (level: Sweet!) <br />
+<img src="/static/color/green.png" alt="" /> (1400) (points: 7-9) (level: Great!) <br />
+<img src="/static/color/yellow.png" alt="" /> (1500) (points: 10-12) (level: Super!) <br />
+<img src="/static/color/yellow.png" alt="" /> (1600) (points: 13-15) (level: Wow!) <br />
+<img src="/static/color/yellow.png" alt="" /> (1700) (points: 16-18) (level: Amazing!) <br />
+<img src="/static/color/orange.png" alt="" /> (1800) (points: 19-21) (level: Extreme!) <br />
+<img src="/static/color/orange.png" alt="" /> (1900) (points: 22-24) (level: Fantastic!) <br />
+<img src="/static/color/orange.png" alt="" /> (2000) (points: 25-27) (level: Splendid!) <br />
+<img src="/static/color/red.png" alt="" /> (2100) (points: 28-30) (level: No way!) <br />
+
+<br /><strong>Combo</strong><br /><br />
+{% if combo %}
+    {% for c in combo %}
+        {{ forloop.counter }} points for combo: {{ c }}<br />
+    {% endfor %}
+{% endif %}
+
+<br /><strong>Floor</strong><br /><br />
+{% if floor %}
+    {% for f in floor %}
+        {{ forloop.counter }} points for floor: {{ f }}<br />
+    {% endfor %}
+{% endif %}
+
+<br /><strong>NML</strong><br /><br />
+{% if nml %}
+    {% for n in nml %}
+        {{ forloop.counter }} points for nml: {{ n }}<br />
+    {% endfor %}
+{% endif %}
+
+</div>
+
+{% endblock %}

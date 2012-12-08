@@ -1,0 +1,17 @@
+{% extends "battles/base.html" %}
+
+{% block content %}
+
+    <div class="main">
+
+    {% if error %}
+        <p style="color: red;">Please submit a search term.</p>
+    {% endif %}
+    <form action="" method="get">
+        Search user: &nbsp; <input type="text" name="u">
+        <input type="submit" value="Search">
+    </form>
+    
+    </div>
+
+{% endblock %}

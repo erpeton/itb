@@ -1,0 +1,15 @@
+{% extends "battles/base.html" %}
+
+{% block content %}
+
+<div class="main">
+{% if messages %}
+    {% for message in messages %}
+        <p style="color: red;">Status: FALSE! <br /><br />{{ message }}</p>
+    {% endfor %}
+{% else %}
+    <p style="color: green;">Status: OK! <br /><br />Your battle is now official. Password will be given at {{ room.start|date:"D d M Y H:00" }} in <a href="{% url battles:show_list %}">Show battles!</a></p>
+{% endif %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,103 @@
+{% extends "battles/base.html" %}
+
+{% block content %}
+{% if official_room_list %}
+<div class="wrapper">
+    <table>
+    <tr>
+    <td colspan="2"><strong>Battle</strong></td>
+    <td><strong>Start/End</strong></td>
+    <td><strong>Category/Password</strong></td>
+    <td><strong>Status</strong></td>
+    </tr>
+    {% for room in official_room_list %}
+    <tr>
+    <td>
+    {% if room.elo1 < 1200 %}
+        <img src="/static/color/blue.png" alt="" /> 
+    {% elif room.elo1 >= 1200 and room.elo1 < 1500 %}
+        <img src="/static/color/green.png" alt="" />
+    {% elif room.elo1 >= 1500 and room.elo1 < 1800 %}
+        <img src="/static/color/yellow.png" alt="" />
+    {% elif room.elo1 >= 1800 and room.elo1 < 2100 %}
+        <img src="/static/color/orange.png" alt="" />
+    {% elif room.elo1 >= 2100 %}
+        <img src="/static/color/red.png" alt="" />
+    {% endif %}
+    {{ room.player1 }}<br /><div class="klein2">({{ room.elo1 }})</div>
+    </td>
+    <td>
+    {% if room.elo2 < 1200 %}
+        <img src="/static/color/blue.png" alt="" /> 
+    {% elif room.elo2 >= 1200 and room.elo2 < 1500 %}
+        <img src="/static/color/green.png" alt="" />
+    {% elif room.elo2 >= 1500 and room.elo2 < 1800 %}
+        <img src="/static/color/yellow.png" alt="" />
+    {% elif room.elo2 >= 1800 and room.elo2 < 2100 %}
+        <img src="/static/color/orange.png" alt="" />
+    {% elif room.elo2 >= 2100 %}
+        <img src="/static/color/red.png" alt="" />
+    {% endif %}
+    {{ room.player2 }}<br /><div class="klein2">({{ room.elo2 }})</div>
+    </td>
+    <td>
+    <div class="klein">S: {{ room.start|date:"D d M Y H:00" }}<br />E: {{ room.end|date:"D d M Y H:00" }} </div>
+    </td>
+    <td>
+    <div class="klein">Category:
+        {% if room.floorsize == 'Normal' and room.speed == 'Normal' and room.gravity == 'Normal' %}
+            Normal {{ room.category }} 
+        {% else %}
+            {% if 'Normal' not in room.floorsize %}
+                {{ room.floorsize }}
+            {% endif %}
+            {% if 'Normal' not in room.speed %}
+                {{ room.speed }}
+            {% endif %}
+            {% if 'Normal' not in room.gravity %}
+                {{ room.gravity }}
+            {% endif %}
+            {{ room.category }}
+        {% endif %}
+        <br />
+        {% if room.start < now %}
+            Password: {{ room.password }}
+        {% else %}
+            Password: 
+        {% endif %}
+    </div>
+    </td>
+    <td>
+    {% if room.start < now %}
+    <a href="{% url battles:show room.id %}">{{ room.result1 }} - {{ room.result2 }}</a>
+    {% else %}
+    pending....
+    {% endif %}
+    </td>
+    </tr>
+    {% endfor %}
+    </table>
+</div>
+    {% if is_paginated %}
+        <div class="pagination">
+        <br />
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <a href="{% url battles:show_list %}?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+                <span class="page-current">
+                    Page {{ page_obj.number }} of {{ paginator.num_pages }}
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="{% url battles:show_list %}?page={{ page_obj.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+        </div>
+    {% endif %}
+{% else %}
+<div class="main">
+    <strong>No official rooms are available yet</strong><br />
+</div>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,199 @@
+/* Icy Tower Battle v0.2 by Jacob */
+
+/* standard elements */
+html {min-height: 100%;}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	color: #000; 
+	font-size: 10pt;
+}
+
+a:hover {color: #000;}
+
+body {
+	background: #c8e0ca;
+	color: #444;
+	font: normal 62.5% Tahoma,sans-serif;
+	padding-top: 10px;
+}
+
+p {
+	padding-bottom: 1.2em;
+}
+
+.container {
+	font-size: 1.2em;
+	margin: 0 auto;
+	width: 800px;
+}
+
+.header {
+	text-align: right;
+	background: url('/static/color/logo9.png') left top no-repeat;
+	height: 217px;
+	margin: 0 auto;
+}
+
+.main {
+	font-size: 10pt;
+	text-align: justify;
+	border: 1px solid #000;
+	padding: 15px;
+}
+
+.main2 {
+	font-size: 10pt;
+	text-align: center;
+	padding-top: 15px;
+}
+
+.wrapper table {
+  	border-collapse: collapse;
+   	font-family: Verdana;
+   	font-size: 10pt;
+   	empty-cells: show;
+	width: 800px; 
+}
+   
+.wrapper th {
+   	border: 1px solid black;
+   	color: #000;
+   	padding: 6px;
+   	text-align: center;
+}
+
+.wrapper td {
+   	border: 1px solid black;
+   	color: #000;
+   	padding: 10px;
+   	text-align: center;
+}
+
+.wrapper td .klein {
+  	font-size: 8pt;
+}
+
+.wrapper td .klein2 {
+  	font-size: 7pt;
+}
+
+.wrapper td .dupa {
+	text-align: left;
+}
+
+
+.wrapper2 {
+    margin: 30px 100px 10px 100px;
+	#margin-left: 100px;
+	#margin-right: 100px;
+}
+
+.wrapper2 table {
+  	border-collapse: collapse;
+   	font-family: Verdana;
+   	font-size: 10pt;
+   	empty-cells: show;
+	width: 600px; 
+	position: center;
+}
+
+.wrapper2 a {text-decoration: none;}
+.wrapper2 a:hover {text-decoration: none;}
+   
+.wrapper2 th {
+   	border: 1px solid black;
+   	color: #004eae;
+   	padding: 6px;
+   	text-align: center;
+}
+
+.wrapper2 td {
+   	border: 1px solid black;
+   	color: #000;
+   	padding: 10px;
+   	text-align: center;
+}
+
+.wrapper2 td .klein {
+  	font-size: 8pt;
+}
+
+.wrapper2 td .klein2 {
+  	font-size: 7pt;
+}
+
+.wrapper2 td .left {
+	text-align: left;
+}
+
+.footer {
+	text-align: center;
+	padding-top: 15px;
+}
+
+.wrapper3 {
+    margin: 30px 200px 10px 200px;
+	margin-left: 200px;
+	margin-right: 200px;
+}
+
+.wrapper3 input {
+	text-align: center;
+	width: 120px;
+}
+
+.wrapper3 .foo {
+	margin-left: 140px;
+}
+
+.wrapper3 input .eh {
+	width: 20px;
+}
+
+.wrapper3 table {
+  	border-collapse: collapse;
+   	font-family: Verdana;
+   	font-size: 10pt;
+   	empty-cells: show;
+	width: 400px; 
+}
+   
+.wrapper3 th {
+   	border: 1px solid black;
+   	color: #000;
+   	padding: 6px;
+   	text-align: center;
+}
+
+.wrapper3 td {
+   	border: 1px solid black;
+   	color: #000;
+   	padding: 10px;
+   	text-align: center;
+}
+
+.wrapper3 td .klein {
+  	font-size: 8pt;
+}
+
+.wrapper3 td .klein2 {
+  	font-size: 7pt;
+}
+
+.wrapper3 td .dupa {
+	text-align: left;
+}
+
+.pagination {
+    text-align: right;
+}
+
+.pagination2 {
+    text-align: right;
+    margin-right: 100px
+}

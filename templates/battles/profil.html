@@ -1,0 +1,164 @@
+{% extends "battles/base.html" %}
+
+{% block content %}
+
+<div class="main">
+{% if ranking.rank == 0 %}
+    <strong>{{ ranking.player }} (without a rank)</strong>
+{% else %}
+
+    {% if ranking.rank < 1200 %}
+        <img src="/static/color/blue.png" alt="" /> 
+    {% elif ranking.rank >= 1200 and ranking.rank < 1500 %}
+        <img src="/static/color/green.png" alt="" />
+    {% elif ranking.rank >= 1500 and ranking.rank < 1800 %}
+        <img src="/static/color/yellow.png" alt="" />
+    {% elif ranking.rank >= 1800 and ranking.rank < 2100 %}
+        <img src="/static/color/orange.png" alt="" />
+    {% elif ranking.rank >= 2100 %}
+        <img src="/static/color/red.png" alt="" />
+    {% endif %}
+
+    <strong>{{ ranking.player }} ({{ ranking.rank}})</strong> [last visit: {{ ranking.player.last_login|date:"D d F Y H:m" }}]<br /><br />
+    Records: 
+    {% if records.combo == 0 %}
+        combo 0,
+    {% else %}
+        <a href="/media/records/{{ ranking.player }}_best_combo.itr">combo {{ records.combo }}</a>, 
+    {% endif %}
+    {% if records.floor == 0 %}
+        floor 0,
+    {% else %}
+        <a href="/media/records/{{ ranking.player }}_best_floor.itr">floor {{ records.floor }}</a>, 
+    {% endif %}
+    {% if records.nml == 0 %}
+        nml 0 <br />
+    {% else %}
+        <a href="/media/records/{{ ranking.player }}_best_nml.itr">nml {{ records.nml }}</a> <br />
+    {% endif %}
+    
+    Level:
+    {% if level <= 3 %}
+        Good!
+    {% elif level >= 3 and level <= 6 %}
+        Sweet!
+    {% elif level >= 6 and level <= 9 %}
+        Great!
+    {% elif level >= 10 and level <= 12 %}
+        Super!
+    {% elif level >= 13 and level <= 15 %}
+        Wow!
+    {% elif level >= 16 and level <= 18 %}
+        Amazing!
+    {% elif level >= 19 and level <= 21 %}
+        Extreme!
+    {% elif level >= 22 and level <= 24 %}
+        Fantastic!
+    {% elif level >= 25 and level <= 27 %}
+        Splendid!
+    {% elif level >= 28 and level <= 30 %}
+        No way!
+    {% endif %}
+
+    ({{ level }}/30) <br /><br />
+
+    {% if ranking.matches == 0 %}
+        No matches yet!</div>
+    {% else %}
+        Battles: {{ ranking.matches}} matches: {{ ranking.win }} win, {{ ranking.lose }} lose, {{ ranking.draw }} draw, {{ ranking.escape }} escape</div>
+        <div class="wrapper">
+        <table>
+        <tr>
+        <td colspan="2"><strong>Battle</strong></td>
+        <td><strong>End/Start</strong></td>
+        <td><strong>Category/Password</strong></td>
+        <td><strong>Status</strong></td>
+        </tr>
+        {% for battle in archive %}
+        <tr>
+        <td>
+        {% if battle.elo1 < 1200 %}
+            <img src="/static/color/blue.png" alt="" /> 
+        {% elif battle.elo1 >= 1200 and battle.elo1 < 1500 %}
+            <img src="/static/color/green.png" alt="" />
+        {% elif battle.elo1 >= 1500 and battle.elo1 < 1800 %}
+            <img src="/static/color/yellow.png" alt="" />
+        {% elif battle.elo1 >= 1800 and battle.elo1 < 2100 %}
+            <img src="/static/color/orange.png" alt="" />
+        {% elif battle.elo1 >= 2100 %}
+            <img src="/static/color/red.png" alt="" />
+        {% endif %}
+        {{ battle.player1 }} <div class="klein2">(before: {{ battle.elo1 }})<br />
+        (after: {{ battle.elo1_after }})</div>
+        </td>
+        <td>
+        {% if battle.elo2 < 1200 %}
+            <img src="/static/color/blue.png" alt="" /> 
+        {% elif battle.elo2 >= 1200 and battle.elo2 < 1500 %}
+            <img src="/static/color/green.png" alt="" />
+        {% elif battle.elo2 >= 1500 and battle.elo2 < 1800 %}
+            <img src="/static/color/yellow.png" alt="" />
+        {% elif battle.elo2 >= 1800 and battle.elo2 < 2100 %}
+            <img src="/static/color/orange.png" alt="" />
+        {% elif battle.elo2 >= 2100 %}
+            <img src="/static/color/red.png" alt="" />
+        {% endif %}
+        {{ battle.player2 }} <div class="klein2">(before: {{ battle.elo2 }})<br />
+        (after: {{ battle.elo2_after }})</div>
+        </td>
+        <td><div class="klein">E: {{ battle.end|date:"D d M Y H:00" }} <br />S: {{ battle.start|date:"D d M Y H:00" }}</div></td>
+        <td><div class="klein">Category: 
+            {% if battle.floorsize == 'Normal' and battle.speed == 'Normal' and battle.gravity == 'Normal' %}
+                Normal {{ battle.category }} 
+            {% else %}
+                {% if 'Normal' not in battle.floorsize %}
+                    {{ battle.floorsize }}
+                {% endif %}
+                {% if 'Normal' not in battle.speed %}
+                    {{ battle.speed }}
+                {% endif %}
+                {% if 'Normal' not in battle.gravity %}
+                    {{ battle.gravity }}
+                {% endif %}
+                {{ battle.category }}
+            {% endif %}
+            <br />Password: {{ battle.password }}</div></td>
+        <td>
+        {% if battle.result1 == 0 %}
+            0
+        {% else %}
+            <a href="/media/replays/{{ battle.player1 }}_battle{{ battle.tmp_battle_id }}.itr">{{ battle.result1 }}</a> 
+        {% endif %}
+        |
+        {% if battle.result2 == 0 %}
+            0
+        {% else %}
+            <a href="/media/replays/{{ battle.player2 }}_battle{{ battle.tmp_battle_id }}.itr">{{ battle.result2 }}</a> 
+        {% endif %}
+        <br /><a href="{% url battles:archive battle.id %}">history</a></td>
+        </tr>
+        {% endfor %}
+        </table>
+    {% endif %}
+    
+{% endif %}
+</div>
+
+    {% if is_paginated %}
+        <div class="pagination">
+        <br />
+            <span class="page-links">
+                {% if archive.has_previous %}
+                    <a href="?page={{ archive.previous_page_number }}">previous</a>
+                {% endif %}
+                <span class="page-current">
+                    Page {{ archive.number }} of {{ archive.paginator.num_pages }}
+                </span>
+                {% if archive.has_next %}
+                    <a href="?page={{ archive.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+        </div> 
+    {% endif %}
+
+{% endblock %}

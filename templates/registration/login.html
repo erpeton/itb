@@ -1,0 +1,32 @@
+{% extends "battles/base.html" %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+    <div class="main">You are logged in...</div>
+{% else %}
+
+<div class="main">
+{% if messages %}
+    {% for message in messages %}
+        <p style="color: green;">{{ message }}</p>
+    {% endfor %}
+{% endif %}
+  {% if form.errors %}
+    <p class="error">Sorry, that's not a valid username or password</p>
+  {% endif %}
+
+  <form action="" method="post">
+    {% csrf_token %}
+    <label for="username">User name:</label>
+    <input type="text" name="username" value="" id="username">
+    <label for="password">Password:</label>
+    <input type="password" name="password" value="" id="password">
+
+    <input type="submit" value="login" />
+    <input type="hidden" name="next" value="/itb/battles/" />
+  </form>
+</div>
+
+{% endif %}
+{% endblock %}

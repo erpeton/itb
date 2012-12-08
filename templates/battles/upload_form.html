@@ -1,0 +1,21 @@
+{% extends "battles/base.html" %}
+
+{% block content %}
+<div class="wrapper3">
+    {% if form.errors %}
+        <p style="color: red;">
+            Please correct the error{{ form.errors|pluralize }} below.
+        </p>
+    {% endif %}
+
+    <form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <br />
+        <input class="foo" type="submit" value="Upload">
+    </form>
+</div>
+
+{% endblock %}

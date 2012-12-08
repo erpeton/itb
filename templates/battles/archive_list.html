@@ -1,0 +1,104 @@
+{% extends "battles/base.html" %}
+
+{% block content %}
+{% if archives_room_list %}
+
+    <div class="wrapper">
+        <table>
+        <tr>
+        <td colspan="2"><strong>Battle</strong></td>
+        <td><strong>End/Start</strong></td>
+        <td><strong>Category/Password</strong></td>
+        <td><strong>Status</strong></td>
+        </tr>
+        {% for battle in archives_room_list %}
+        <tr>
+        <td>
+        {% if battle.elo1 < 1200 %}
+            <img src="/static/color/blue.png" alt="" /> 
+        {% elif battle.elo1 >= 1200 and battle.elo1 < 1500 %}
+            <img src="/static/color/green.png" alt="" />
+        {% elif battle.elo1 >= 1500 and battle.elo1 < 1800 %}
+            <img src="/static/color/yellow.png" alt="" />
+        {% elif battle.elo1 >= 1800 and battle.elo1 < 2100 %}
+            <img src="/static/color/orange.png" alt="" />
+        {% elif battle.elo1 >= 2100 %}
+            <img src="/static/color/red.png" alt="" />
+        {% endif %}
+        {{ battle.player1 }} <div class="klein2">(before: {{ battle.elo1 }})<br />
+        (after: {{ battle.elo1_after }})</div>
+        </td>
+        <td>
+        {% if battle.elo2 < 1200 %}
+            <img src="/static/color/blue.png" alt="" /> 
+        {% elif battle.elo2 >= 1200 and battle.elo2 < 1500 %}
+            <img src="/static/color/green.png" alt="" />
+        {% elif battle.elo2 >= 1500 and battle.elo2 < 1800 %}
+            <img src="/static/color/yellow.png" alt="" />
+        {% elif battle.elo2 >= 1800 and battle.elo2 < 2100 %}
+            <img src="/static/color/orange.png" alt="" />
+        {% elif battle.elo2 >= 2100 %}
+            <img src="/static/color/red.png" alt="" />
+        {% endif %}
+        {{ battle.player2 }} <div class="klein2">(before: {{ battle.elo2 }})<br />
+        (after: {{ battle.elo2_after }})</div>
+        </td>
+        <td><div class="klein">E: {{ battle.end|date:"D d M Y H:00" }} <br />S: {{ battle.start|date:"D d M Y H:00" }}</div></td>
+        <td><div class="klein">Category: 
+            {% if battle.floorsize == 'Normal' and battle.speed == 'Normal' and battle.gravity == 'Normal' %}
+                Normal {{ battle.category }} 
+            {% else %}
+                {% if 'Normal' not in battle.floorsize %}
+                    {{ battle.floorsize }}
+                {% endif %}
+                {% if 'Normal' not in battle.speed %}
+                    {{ battle.speed }}
+                {% endif %}
+                {% if 'Normal' not in battle.gravity %}
+                    {{ battle.gravity }}
+                {% endif %}
+                {{ battle.category }}
+            {% endif %}
+            <br />Password: {{ battle.password }}</div></td>
+        <td>
+        {% if battle.result1 == 0 %}
+            0
+        {% else %}
+            <a href="/media/replays/{{ battle.player1 }}_battle{{ battle.tmp_battle_id }}.itr">{{ battle.result1 }}</a> 
+        {% endif %}
+        |
+        {% if battle.result2 == 0 %}
+            0
+        {% else %}
+            <a href="/media/replays/{{ battle.player2 }}_battle{{ battle.tmp_battle_id }}.itr">{{ battle.result2 }}</a> 
+        {% endif %}
+        <br /><a href="{% url battles:archive battle.id %}">history</a></td>
+        </tr>
+        {% endfor %}
+        </table>
+    </div>
+    
+    {% if is_paginated %}
+        <div class="pagination">
+        <br />
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <a href="{% url battles:archive_list %}?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+                <span class="page-current">
+                    Page {{ page_obj.number }} of {{ paginator.num_pages }}
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="{% url battles:archive_list %}?page={{ page_obj.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+        </div> 
+    {% endif %}
+
+{% else %}
+<div class="main">
+    <strong>No archive rooms are available</strong><br />
+</div>
+{% endif %}
+
+{% endblock %}

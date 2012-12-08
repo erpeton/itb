@@ -61,5 +61,6 @@ Info!
 
     1 * * * * /home/your_username/itb/cron.py
     
-*Credits*
+**Credits**
+
 Many thanks to Neuer for testing and Vinyanov for translation.

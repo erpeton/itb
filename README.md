@@ -52,7 +52,7 @@ Info!
     $ mkdir /home/your_username/html/media/records
     $ mkdir /home/your_username/html/media/replays
     $ mkdir /home/your_username/html/static
-    $ cp -a static/. /home/kuba/html/static/
+    $ cp -a static/. /home/your_username/html/static/
 
     $ python2.7 manage.py syncdb
     $ python2.7 add_first_user.py

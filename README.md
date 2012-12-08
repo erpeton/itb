@@ -8,16 +8,16 @@ Get a rank!
 
 After creating a new account and logging in, send us replays with your records in Combo, Floor and NML. This will allow us to assign you a rank depending on your skill. For each category, you can get up to 10 points, which makes 30 points in total. Ranks are assigned for meeting appropriate score ranges (Combo 1430, Floor 2390 and NML 1955 are world records - when someone beats them, the ranges will change accordingly).
 
-(1200) (points: 1-3) (level: Good!) 
-(1300) (points: 4-6) (level: Sweet!) 
-(1400) (points: 7-9) (level: Great!) 
-(1500) (points: 10-12) (level: Super!) 
-(1600) (points: 13-15) (level: Wow!) 
-(1700) (points: 16-18) (level: Amazing!) 
-(1800) (points: 19-21) (level: Extreme!) 
-(1900) (points: 22-24) (level: Fantastic!) 
-(2000) (points: 25-27) (level: Splendid!) 
-(2100) (points: 28-30) (level: No Way!)
+* (1200) (points: 1-3) (level: Good!) 
+* (1300) (points: 4-6) (level: Sweet!) 
+* (1400) (points: 7-9) (level: Great!) 
+* (1500) (points: 10-12) (level: Super!) 
+* (1600) (points: 13-15) (level: Wow!) 
+* (1700) (points: 16-18) (level: Amazing!) 
+* (1800) (points: 19-21) (level: Extreme!) 
+* (1900) (points: 22-24) (level: Fantastic!) 
+* (2000) (points: 25-27) (level: Splendid!) 
+* (2100) (points: 28-30) (level: No Way!)
 
 Info! 
 
@@ -60,3 +60,6 @@ Info!
     $ crontab -e 
 
     1 * * * * /home/your_username/itb/cron.py
+    
+*Credits*
+Many thanks to Neuer for testing and Vinyanov for translation.

@@ -64,3 +64,7 @@ Info!
 **Credits**
 
 Many thanks to Neuer for testing and Vinyanov for translation.
+
+**Contact**
+
+* jacob10aniv [at] gmail [dot] com

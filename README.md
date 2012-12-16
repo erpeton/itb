@@ -34,10 +34,6 @@ Info!
 
 * Django 1.4.2 or higher (at the moment, 1.4.2 is the latest official version)
 
-**Demo** (this site will be removed soon, so don't take it seriously ;p):
-
-[Icy Tower Battle v0.2 - demo site](http://kuba.norma.uberspace.de/itb/battles/)
-
 **Screenshots**
 
 [Icy Tower Battle v0.2 - screenshots](https://github.com/erpeton/itb/tree/master/screenshots)
